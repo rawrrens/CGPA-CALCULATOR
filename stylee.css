@@ -1,0 +1,928 @@
+/* Reset and Base Styles */
+:root {
+    /* Relaxing Color Palette - Soft & Minimalist */
+    --primary: #6366f1;        /* soft indigo */
+    --primary-light: #8b5cf6;  /* light purple */
+    --primary-dark: #4f46e5;   /* darker indigo */
+    --accent: #06b6d4;         /* cyan */
+    --accent-light: #22d3ee;   /* light cyan */
+    --accent-dark: #0891b2;    /* darker cyan */
+    --success: #10b981;        /* emerald */
+    --warning: #f59e0b;        /* amber */
+    --danger: #ef4444;         /* red */
+    
+    /* Soft Neutrals */
+    --bg-primary: #fafbff;     /* very soft blue-white */
+    --bg-secondary: #f1f5f9;   /* light blue-gray */
+    --card: #ffffff;           /* pure white cards */
+    --card-hover: #f8fafc;     /* subtle hover */
+    --border: #e2e8f0;         /* soft border */
+    --border-light: #f1f5f9;   /* lighter border */
+    --text: #1e293b;           /* dark blue-gray */
+    --text-light: #64748b;     /* muted text */
+    --text-lighter: #94a3b8;   /* very muted text */
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Liberation Sans', sans-serif;
+    line-height: 1.6;
+    color: var(--text);
+    background:
+        linear-gradient(135deg, #667eea 0%, #764ba2 100%),
+        radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(120, 219, 226, 0.15) 0%, transparent 50%),
+        var(--bg-primary);
+    background-attachment: fixed;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Header Styles */
+.header {
+    text-align: center;
+    margin-bottom: 32px;
+    color: var(--text);
+    padding: 24px 0;
+}
+
+.header-content i {
+    font-size: 2.5rem;
+    margin-bottom: 12px;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 2px 4px rgba(99, 102, 241, 0.2));
+}
+
+.header h1 {
+    font-size: 2.25rem;
+    margin-bottom: 8px;
+    font-weight: 600;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: -0.025em;
+}
+
+.project-tagline {
+    font-size: 1rem;
+    color: var(--text-light);
+    letter-spacing: 0.05em;
+    font-weight: 500;
+}
+
+/* Decorative underline for title */
+.header h1::after {
+    content: "";
+    display: block;
+    width: 88px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%);
+    margin: 10px auto 0;
+    border-radius: 3px;
+}
+
+
+/* Card Styles */
+.card {
+    background: var(--card);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 24px;
+    border: 1px solid var(--border);
+    box-shadow: 0 4px 20px rgba(99, 102, 241, 0.08);
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    border-color: var(--primary);
+    box-shadow: 0 8px 32px rgba(99, 102, 241, 0.15);
+    transform: translateY(-2px);
+}
+
+.card h2 {
+    color: var(--text);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 600;
+}
+
+.card h2 i {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-size: 1.1em;
+}
+
+/* Student Information Styles */
+.student-form, .course-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.student-display {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 2px solid #e2e8f0;
+}
+
+.student-card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-light);
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.student-info h3 {
+    color: var(--text);
+    font-size: 1.1rem;
+    margin-bottom: 4px;
+}
+
+.student-info p {
+    color: #4b5563;
+    margin-bottom: 2px;
+}
+
+/* Form Styles */
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.95rem;
+}
+
+.form-group label i {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    width: 18px;
+}
+
+.form-group input,
+.form-group select {
+    padding: 12px 16px;
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: var(--card);
+    color: var(--text);
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+    transform: translateY(-1px);
+}
+
+.note {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    text-align: center;
+    margin-top: -8px;
+    font-style: italic;
+}
+
+/* Button Styles */
+.btn {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    justify-content: center;
+    background: var(--card);
+    color: var(--text);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn:disabled {
+    background: #f3f4f6 !important;
+    color: #9ca3af !important;
+    cursor: not-allowed;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+    color: #ffffff;
+    box-shadow: 0 4px 16px rgba(99, 102, 241, 0.3);
+}
+.btn-primary:hover:not(:disabled) {
+    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+    box-shadow: 0 8px 24px rgba(99, 102, 241, 0.4);
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background: #f3f7fb;
+    color: var(--primary);
+    border-color: var(--border);
+}
+.btn-secondary:hover {
+    background: #e9f2f9;
+    box-shadow: 0 6px 16px rgba(32, 99, 155, 0.15);
+    transform: translateY(-1px);
+}
+
+.btn-success {
+    background: linear-gradient(135deg, var(--success) 0%, var(--accent) 100%);
+    color: #ffffff;
+    box-shadow: 0 4px 16px rgba(16, 185, 129, 0.3);
+}
+.btn-success:hover {
+    background: linear-gradient(135deg, var(--accent-dark) 0%, var(--success) 100%);
+    box-shadow: 0 8px 24px rgba(16, 185, 129, 0.4);
+    transform: translateY(-2px);
+}
+
+.btn-danger {
+    background: linear-gradient(135deg, var(--danger) 0%, #f97316 100%);
+    color: #ffffff;
+    box-shadow: 0 4px 16px rgba(239, 68, 68, 0.3);
+}
+.btn-danger:hover {
+    background: linear-gradient(135deg, #dc2626 0%, var(--danger) 100%);
+    box-shadow: 0 8px 24px rgba(239, 68, 68, 0.4);
+    transform: translateY(-2px);
+}
+
+.btn-remove {
+    background: var(--rose-50);
+    color: #b91c1c;
+    padding: 6px 12px;
+    font-size: 0.875rem;
+    border-color: #fecaca;
+}
+.btn-remove:hover {
+    background: var(--rose-100);
+    transform: translateY(-1px);
+}
+
+/* Button interactive states */
+.btn:active {
+    transform: translateY(0);
+}
+
+/* Focus states for accessibility */
+.btn:focus-visible,
+.form-group input:focus-visible,
+.form-group select:focus-visible {
+    outline: 2px solid var(--primary-600);
+    outline-offset: 2px;
+}
+
+/* Courses List Styles */
+.courses-list {
+    margin-bottom: 16px;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 48px 24px;
+    color: var(--text-lighter);
+}
+
+.empty-state i {
+    font-size: 3rem;
+    margin-bottom: 15px;
+}
+
+.course-item {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.course-item:hover {
+    border-color: var(--primary-600);
+    box-shadow: 0 2px 12px rgba(32, 99, 155, 0.12);
+}
+
+.course-info {
+    flex: 1;
+}
+
+.course-name {
+    font-weight: 600;
+    font-size: 1.05rem;
+    color: var(--text);
+    margin-bottom: 4px;
+}
+
+/* Badges */
+.badge {
+    display: inline-block;
+    padding: 4px 10px;
+    font-size: 0.8rem;
+    line-height: 1;
+    border-radius: 999px;
+    background: #f1f5f9;
+    color: var(--text);
+    border: 1px solid var(--border);
+}
+.badge-primary {
+    background: var(--primary-600);
+    color: #fff;
+    border-color: var(--primary-600);
+}
+
+.course-details {
+    color: #6b7280;
+    font-size: 0.9rem;
+}
+
+.course-grade {
+    text-align: center;
+    margin: 0 20px;
+}
+
+.grade-value {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--text);
+}
+
+.grade-points {
+    font-size: 0.8rem;
+    color: #718096;
+}
+
+/* Action Buttons */
+.action-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* Results Styles */
+.results-card {
+    background: var(--card);
+    color: var(--text);
+    text-align: center;
+    border: 1px solid var(--border);
+    border-top: 4px solid transparent;
+    border-image: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%) 1;
+    position: relative;
+    overflow: hidden;
+}
+
+.results-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%);
+}
+
+.results-card h2 {
+    color: var(--text);
+    margin-bottom: 20px;
+}
+
+.cgpa-display {
+    margin-bottom: 30px;
+}
+
+.cgpa-value {
+    font-size: 3.5rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 8px;
+}
+
+.cgpa-label {
+    font-size: 1.1rem;
+    color: var(--text-light);
+    margin-top: 8px;
+    font-weight: 500;
+}
+
+.results-details {
+    background: var(--bg-secondary);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 24px;
+    border: 1px solid var(--border-light);
+}
+
+.result-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.result-item:last-child {
+    border-bottom: none;
+}
+
+.result-item .label {
+    font-weight: 500;
+}
+
+.result-item .value {
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+/* Performance Indicator */
+.performance-indicator {
+    background: var(--bg-secondary);
+    border-radius: 12px;
+    padding: 20px;
+    border: 1px solid var(--border-light);
+}
+
+.indicator-text {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.indicator-description {
+    font-size: 1rem;
+    opacity: 0.9;
+}
+
+/* Grade Scale Reference */
+.grade-scale {
+    display: grid;
+    gap: 12px;
+}
+
+.grade-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    border-radius: 8px;
+    font-weight: 500;
+    background: var(--card);
+    border: 1px solid var(--border);
+}
+
+.grade-item.excellent { border-left: 4px solid var(--accent); }
+.grade-item.very-good { border-left: 4px solid var(--primary-600); }
+.grade-item.good { border-left: 4px solid var(--warn); }
+.grade-item.satisfactory { border-left: 4px solid var(--border-strong); }
+.grade-item.poor { border-left: 4px solid var(--danger); }
+.grade-item.failed { border-left: 4px solid var(--danger-600); }
+
+.grade-item .grade {
+    font-weight: 700;
+    color: #111827;
+}
+
+.grade-item .description {
+    color: #6b7280;
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    padding: 20px;
+    color: #6b7280;
+    font-size: 0.9rem;
+}
+
+/* Animation Classes */
+.fade-in {
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.alert {
+    box-shadow: 0 4px 12px rgba(17,24,39,0.08);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+    
+    
+    .header h1 {
+        font-size: 2rem;
+    }
+    
+    .header-content i {
+        font-size: 2rem;
+    }
+    
+    .card {
+        padding: 20px;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .student-card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    
+    .course-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    
+    .course-grade {
+        margin: 0;
+        align-self: flex-end;
+    }
+    
+    .cgpa-value {
+        font-size: 3rem;
+    }
+    
+    .action-buttons {
+        flex-direction: column;
+    }
+    
+    .btn {
+        width: 100%;
+    }
+    
+    .grade-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .header h1 {
+        font-size: 1.8rem;
+    }
+    
+    .card {
+        padding: 15px;
+        margin-bottom: 20px;
+    }
+    
+    .cgpa-value {
+        font-size: 2.5rem;
+    }
+    
+    .results-details {
+        padding: 15px;
+    }
+}
+
+/* ---------------------------------------------
+   Minimal Theme Overrides (Warm Palette)
+   Based on uploaded palette: soft peach → plum
+   Purpose: more minimalist, relaxing, less gradients
+---------------------------------------------- */
+
+:root {
+  /* Warm palette (accessible, calm) */
+  --warm-peach-50: #FFF8F1;
+  --warm-peach-100: #FFEAD9;
+  --warm-peach-200: #FFD1AF;
+  --warm-peach-300: #FFB37F;
+  --warm-coral-400: #F28C6B; /* primary base */
+  --warm-coral-500: #E76F51; /* primary strong */
+  --warm-rose-600: #D0495C;  /* accent */
+  --warm-berry-700: #A61E4D; /* deep accent */
+  --warm-plum-800: #6D0F3B;  /* emphasis */
+  --ink: #1F2937;            /* neutral dark text */
+  --ink-muted: #6B7280;      /* muted text */
+
+  /* Map to existing tokens used throughout */
+  --primary: var(--warm-coral-500);
+  --primary-light: var(--warm-coral-400);
+  --primary-dark: #c4573e;
+  --accent: var(--warm-berry-700);
+  --accent-light: var(--warm-rose-600);
+  --accent-dark: var(--warm-plum-800);
+  --success: #10b981;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+
+  --bg-primary: var(--warm-peach-50);
+  --bg-secondary: var(--warm-peach-100);
+  --card: #ffffff;
+  --card-hover: #fffdfb;
+  --border: #f1dccf;
+  --border-light: #f7eae0;
+  --text: var(--ink);
+  --text-light: #7A8699;
+  --text-lighter: #9AA5B1;
+}
+
+/* Softer page background: remove vivid gradients */
+body {
+  background: linear-gradient(180deg, var(--bg-primary) 0%, #FFFDF9 60%, var(--bg-secondary) 100%);
+  background-attachment: scroll;
+}
+
+/* Header: remove gradient text, use solid calm colors */
+.header-content i {
+  background: none !important;
+  -webkit-background-clip: initial !important;
+  -webkit-text-fill-color: currentColor !important;
+  background-clip: initial !important;
+  color: var(--primary) !important;
+  filter: none !important;
+}
+
+.header h1 {
+  background: none !important;
+  -webkit-background-clip: initial !important;
+  -webkit-text-fill-color: currentColor !important;
+  background-clip: initial !important;
+  color: var(--ink) !important;
+  letter-spacing: -0.01em !important;
+}
+
+.header h1::after {
+  background: var(--primary) !important;
+}
+
+.project-tagline {
+  color: var(--text-light) !important;
+}
+
+/* Cards: reduce blur/shadows, increase whitespace */
+.card {
+  backdrop-filter: none !important;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.04) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 14px !important;
+}
+
+.card:hover {
+  transform: none !important;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.06) !important;
+  border-color: var(--border) !important;
+}
+
+/* Forms: clean inputs with gentle focus */
+.form-group input,
+.form-group select {
+  border-color: var(--border) !important;
+  background: #fff !important;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  border-color: var(--primary) !important;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--primary) 18%, transparent) !important;
+}
+
+.form-group label i {
+  background: none !important;
+  -webkit-text-fill-color: currentColor !important;
+  color: var(--text-light) !important;
+}
+
+/* Buttons: solid, flat, minimal */
+.btn {
+  border-radius: 10px !important;
+  box-shadow: none !important;
+  border: 1px solid var(--border) !important;
+}
+
+.btn-primary {
+  background: var(--primary) !important;
+  color: #fff !important;
+  border-color: var(--primary) !important;
+}
+.btn-primary:hover:not(:disabled) {
+  background: var(--primary-dark) !important;
+}
+
+.btn-secondary {
+  background: #fff !important;
+  color: var(--primary) !important;
+  border-color: var(--border) !important;
+}
+
+.btn-success {
+  background: var(--success) !important;
+  color: #fff !important;
+}
+
+.btn-danger {
+  background: var(--danger) !important;
+  color: #fff !important;
+}
+
+/* Chips/Badges */
+.badge-primary {
+  background: var(--primary) !important;
+  border-color: var(--primary) !important;
+}
+
+/* Results card accent: single color */
+.results-card {
+  border-image: none !important;
+  border-top: 3px solid var(--primary) !important;
+}
+
+.cgpa-value {
+  background: none !important;
+  -webkit-text-fill-color: currentColor !important;
+  color: var(--ink) !important;
+}
+
+.results-details,
+.performance-indicator,
+.student-card {
+  background: var(--bg-secondary) !important;
+  border: 1px solid var(--border-light) !important;
+}
+
+/* ---------------------------------------------
+   Updated Cool Palette Override
+   From latest uploaded image: magenta → coral → mint → teal → navy
+   Base: TEAL/MINT for calm, minimalist feel
+---------------------------------------------- */
+
+:root {
+  /* Updated cool palette from image */
+  --cool-magenta: #E91E63;     /* vibrant pink */
+  --cool-coral: #FF7A7A;      /* soft coral */
+  --cool-mint-light: #B8E6D3; /* light mint */
+  --cool-teal: #26A69A;       /* primary teal */
+  --cool-teal-dark: #00695C;  /* darker teal */
+  --cool-navy: #37474F;       /* deep navy */
+  
+  /* Mint-based neutrals for base */
+  --mint-50: #F0FDF9;         /* very light mint */
+  --mint-100: #E6FFFA;        /* light mint bg */
+  --mint-200: #B2F5EA;        /* soft mint */
+  
+  /* Override design tokens with cool palette */
+  --primary: var(--cool-teal) !important;
+  --primary-light: #4DB6AC !important;
+  --primary-dark: var(--cool-teal-dark) !important;
+  --accent: var(--cool-mint-light) !important;
+  --accent-light: var(--mint-200) !important;
+  --accent-dark: var(--cool-navy) !important;
+  
+  /* Base colors using mint */
+  --bg-primary: var(--mint-50) !important;
+  --bg-secondary: var(--mint-100) !important;
+  --card: #ffffff !important;
+  --card-hover: #fefffe !important;
+  --border: #D1FAE5 !important;
+  --border-light: #ECFDF5 !important;
+  --text: var(--cool-navy) !important;
+  --text-light: #546E7A !important;
+  --text-lighter: #90A4AE !important;
+}
+
+/* Soft mint background gradient */
+body {
+  background: linear-gradient(180deg, var(--bg-primary) 0%, #F7FEFC 50%, var(--bg-secondary) 100%) !important;
+  background-attachment: fixed !important;
+}
+
+/* Clean header styling */
+.header-content i {
+  color: var(--primary) !important;
+}
+
+.header h1 {
+  color: var(--text) !important;
+}
+
+.header h1::after {
+  background: linear-gradient(90deg, var(--primary) 0%, var(--cool-mint-light) 100%) !important;
+}
+
+/* Teal-based buttons */
+.btn-primary {
+  background: var(--primary) !important;
+  border-color: var(--primary) !important;
+  color: white !important;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: var(--primary-dark) !important;
+  border-color: var(--primary-dark) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 12px rgba(38, 166, 154, 0.3) !important;
+}
+
+.btn-success {
+  background: var(--primary) !important;
+  color: white !important;
+}
+
+/* Teal focus states */
+.form-group input:focus,
+.form-group select:focus {
+  border-color: var(--primary) !important;
+  box-shadow: 0 0 0 3px rgba(38, 166, 154, 0.15) !important;
+}
+
+/* Results card with teal accent */
+.results-card {
+  border-top: 4px solid var(--primary) !important;
+}
+
+.cgpa-value {
+  color: var(--primary) !important;
+}
+
+/* Mint-tinted surfaces */
+.results-details,
+.performance-indicator,
+.student-card {
+  background: var(--bg-secondary) !important;
+  border: 1px solid var(--border-light) !important;
+}
+
+.empty-state {
+  color: var(--text-lighter) !important;
+}

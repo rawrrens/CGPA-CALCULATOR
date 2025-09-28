@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CGPA Calculator</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- Minimal, professional font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="stylee.css">
+    <!-- jsPDF for PDF export -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <noscript>
+            <div class="card" role="alert" aria-live="assertive">
+                JavaScript is disabled. Please enable JavaScript to use the CGPA Calculator.
+            </div>
+        </noscript>
+
+        <header class="header">
+            <div class="header-content">
+                <i class="fas fa-graduation-cap"></i>
+                <h1>CGPA Calculator</h1>
+                <p class="project-tagline">GROUP 3 - FINAL PROJECT</p>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <!-- Student Information Section -->
+            <section class="student-section">
+                <div class="card">
+                    <h2><i class="fas fa-user-graduate"></i> Student Information</h2>
+                    <form id="studentForm" class="student-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="studentName">
+                                    <i class="fas fa-user"></i>
+                                    Student Name
+                                </label>
+                                <input type="text" id="studentName" placeholder="Enter your full name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="studentGrade">
+                                    <i class="fas fa-layer-group"></i>
+                                    Year Level
+                                </label>
+                                <select id="studentGrade" required>
+                                    <option value="">Select Year</option>
+                                    <option value="1st Year">1st Year College</option>
+                                    <option value="2nd Year">2nd Year College</option>
+                                    <option value="3rd Year">3rd Year College</option>
+                                    <option value="4th Year">4th Year College</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="studentSection">
+                                <i class="fas fa-users"></i>
+                                Course & Section
+                            </label>
+                            <input type="text" id="studentSection" placeholder="e.g., BSE-1A, BSBA-1A, BSIT-1A" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save"></i>
+                            Save Student Info
+                        </button>
+                    </form>
+                    
+                    <!-- Student Info Display -->
+                    <div id="studentDisplay" class="student-display" style="display: none;">
+                        <div class="student-card">
+                            <div class="student-info">
+                                <h3 id="displayName"></h3>
+                                <p><strong>Year:</strong> <span id="displayGrade" class="badge badge-primary"></span></p>
+                                <p><strong>Section:</strong> <span id="displaySection" class="badge"></span></p>
+                            </div>
+                            <button id="editStudentBtn" class="btn btn-secondary">
+                                <i class="fas fa-edit"></i>
+                                Edit Info
+                            </button>
+                            <button id="clearProfileBtn" class="btn btn-danger">
+                                <i class="fas fa-user-slash"></i>
+                                Clear Profile
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Input Section -->
+            <section class="input-section">
+                <div class="card">
+                    <h2><i class="fas fa-plus-circle"></i> Add Course</h2>
+                    <form id="courseForm" class="course-form">
+                        <div class="form-group">
+                            <label for="courseName">
+                                <i class="fas fa-book"></i>
+                                Course Name
+                            </label>
+                            <input type="text" id="courseName" placeholder="e.g., Mathematics, Physics" required>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="units">
+                                    <i class="fas fa-star"></i>
+                                    Units
+                                </label>
+                                <input type="number" id="units" min="1" max="10" placeholder="3" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="grade">
+                                    <i class="fas fa-award"></i>
+                                    Grade
+                                </label>
+                                <select id="grade" required>
+                                    <option value="">Select Grade</option>
+                                    <option value="1.0">1.0 - Outstanding</option>
+                                    <option value="1.25">1.25 - Excellent</option>
+                                    <option value="1.5">1.5 - Very Good</option>
+                                    <option value="1.75">1.75 - Good</option>
+                                    <option value="2.0">2.0 - Satisfactory</option>
+                                    <option value="2.25">2.25 - Fair</option>
+                                    <option value="2.5">2.5 - Pass</option>
+                                    <option value="2.75">2.75 - Pass</option>
+                                    <option value="3.0">3.0 - Pass</option>
+                                    <option value="4.0">4.0 - Conditional</option>
+                                    <option value="5.0">5.0 - Failed</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary" id="addCourseBtn" disabled>
+                            <i class="fas fa-plus"></i>
+                            Add Course
+                        </button>
+                        <p class="note">Please save student information first before adding courses.</p>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Courses List Section -->
+            <section class="courses-section">
+                <div class="card">
+                    <h2><i class="fas fa-list"></i> Your Courses</h2>
+                    <div id="coursesList" class="courses-list">
+                        <div class="empty-state">
+                            <i class="fas fa-inbox"></i>
+                            <p>No courses added yet. Add your first course above!</p>
+                        </div>
+                    </div>
+                    
+                    <div class="action-buttons" id="actionButtons" style="display: none;">
+                        <button id="calculateBtn" class="btn btn-success">
+                            <i class="fas fa-calculator"></i>
+                            Calculate CGPA
+                        </button>
+                        <button id="clearAllBtn" class="btn btn-danger">
+                            <i class="fas fa-trash"></i>
+                            Clear All
+                        </button>
+                        <button id="exportBtn" class="btn btn-secondary">
+                            <i class="fas fa-file-export"></i>
+                            Export Report
+                        </button>
+                        <button id="printBtn" class="btn btn-primary">
+                            <i class="fas fa-print"></i>
+                            Print
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Results Section -->
+            <section class="results-section" id="resultsSection" style="display: none;">
+                <div class="card results-card">
+                    <h2><i class="fas fa-chart-line"></i> CGPA Results</h2>
+                    
+                    <div class="cgpa-display">
+                        <div class="cgpa-value" id="cgpaValue">0.00</div>
+                        <div class="cgpa-label">Your CGPA</div>
+                    </div>
+
+                    <div class="results-details">
+                        <div class="result-item">
+                            <span class="label">Total Courses:</span>
+                            <span class="value" id="totalCourses">0</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="label">Total Units:</span>
+                            <span class="value" id="totalUnits">0</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="label">Total Grade Points:</span>
+                            <span class="value" id="totalGradePoints">0.00</span>
+                        </div>
+                    </div>
+
+                    <div class="performance-indicator" id="performanceIndicator">
+                        <div class="indicator-text"></div>
+                        <div class="indicator-description"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Grade Scale Reference -->
+            <section class="reference-section">
+                <div class="card">
+                    <h2><i class="fas fa-info-circle"></i> Grading Scale Reference</h2>
+                    <div class="grade-scale">
+                        <div class="grade-item excellent">
+                            <span class="grade">1.0 - 1.25</span>
+                            <span class="description">Outstanding/Excellent (96-100%)</span>
+                        </div>
+                        <div class="grade-item very-good">
+                            <span class="grade">1.5 - 1.75</span>
+                            <span class="description">Very Good/Good (87-95%)</span>
+                        </div>
+                        <div class="grade-item good">
+                            <span class="grade">2.0 - 2.25</span>
+                            <span class="description">Satisfactory/Fair (81-89%)</span>
+                        </div>
+                        <div class="grade-item satisfactory">
+                            <span class="grade">2.5 - 3.0</span>
+                            <span class="description">Pass (75-83%)</span>
+                        </div>
+                        <div class="grade-item poor">
+                            <span class="grade">4.0</span>
+                            <span class="description">Conditional (65-74%)</span>
+                        </div>
+                        <div class="grade-item failed">
+                            <span class="grade">5.0</span>
+                            <span class="description">Failed (Below 65%)</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            
+        </main>
+
+        <footer class="footer">
+            <p>&copy; 2025 CGPA Calculator</p>
+            <p>GROUP-3 FINAL PROJECT CGPA CALCULATOR.</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
